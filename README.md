@@ -1,5 +1,5 @@
 # Restish
-A simple tiny angularjs provider for interacting `REST` endpoints (though not required). That's why it's RESTish.. har har har. Ok, not funny. But keep reading for examples
+A simple tiny angularjs provider for interacting with `REST` endpoints (though not required). That's why it's RESTish.. har har har. Ok, not funny. But keep reading for examples
 
 
 # How's it work
@@ -54,17 +54,18 @@ function SomeController(Restish){
             'x-restish': '12345'
         }
     };
+    
     user.put(moreUserData, config).then(function(response){
         // Do stuff with response
     },
+    
     // Remember, I'm a built-in promise so you have access to the error handler
     function(errResponse){
 
     });
 
-    // Now let's start adding some stuff to the url path. 
+    // Now let's start adding some stuff to the url path.
     // Every time you want to append to the url, use `route(path)`
-
     // `GET` request to `/user/admin`
     user.route('admin').get().then(function(){
 
