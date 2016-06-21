@@ -9,6 +9,7 @@ It's pretty much a route manager that allows you to build url's and then execute
 # Examples
 
 ```javascript
+
 // Be sure to include in your module
 angular
     .module('app', ['restish'])
@@ -34,15 +35,15 @@ function SomeController(Restish){
 
     // `GET` request to `/user` without any params
     user.get().then(function(response){
-            // Hey I'm the built-in response object found in $http!
-            console.log(response);
-            });
+        // Hey I'm the built-in response object found in $http!
+        console.log(response);
+    });
 
     // `POST` request to `/user` with data
     var userData = {id: 1, firstname: 'John'};
     user.post(userData).then(function(response){
-            // Do stuff with response
-            });
+        // Do stuff with response
+    });
 
     // `PUT` request to `/user` with data
     // Note the use of a http config object. All calls allow you to pass in a $http 
@@ -50,16 +51,16 @@ function SomeController(Restish){
     var moreUserData = {id: 2, firstname: 'John'};
     var config = {
         headers: {
-             'x-restish': '12345'
-         }
+            'x-restish': '12345'
+        }
     };
     user.put(moreUserData, config).then(function(response){
-            // Do stuff with response
-            },
-            // Remember, I'm a built-in promise so you have access to the error handler
-            function(errResponse){
+        // Do stuff with response
+    },
+    // Remember, I'm a built-in promise so you have access to the error handler
+    function(errResponse){
 
-            });
+    });
 
     // Now let's start adding some stuff to the url path. 
     // Every time you want to append to the url, use `route(path)`
@@ -67,18 +68,18 @@ function SomeController(Restish){
     // `GET` request to `/user/admin`
     user.route('admin').get().then(function(){
 
-            });
+    });
 
     // Id is an alias to route
     // `GET` request to `/user/1`
     user.id(1).get().then(function(){
 
-            });
+    });
 
     // `GET` request to /user/admin/headhoncho`
     user.route('admin').route('headhoncho').get().then(function(response){
 
-            });
+    });
 
     // You can also assign routes to variables
     var adminUsers = user.route('admin');
@@ -86,7 +87,6 @@ function SomeController(Restish){
     // `POST` request to `/user/admin`
     adminUsers.post().then(function(response){
 
-            });
+    });
 }
 ```
-
