@@ -18,13 +18,17 @@
     function RestishProvider(){
         var provider = this;
 
-        this.defaults = {
+        provider.defaults = {
             stripTrailingSlashes: true,
             basePath: '',
             $httpConfig: {}
         };
 
-        this.$get = ['$http', function($http){
+        provider.$get = RestishGet;
+
+        // Inject the dependencies
+        RestishGet.$inject = ['$http'];
+        function RestishGet($http){
             provider.defaults.basePath = provider.defaults.basePath.replace(/\/$/, "");
 
             function Route(route){
@@ -33,7 +37,7 @@
 
                 Route.prototype.path = function(){
                     // If user enters full absolute http/https url, use that
-                    if(this._route.indexOf('http') == 0){
+                    if(this._route.indexOf('http') === 0){
                         return this._route;
                     }
 
@@ -78,9 +82,9 @@
             return function(route){
                 return new Route(route);
             };
-        }];
+        }
 
-    }
+}
 
 
 })();
